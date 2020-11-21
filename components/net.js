@@ -1,10 +1,62 @@
-import React from "react";
-import G6 from "@antv/g6";
 //import Minimap from "@antv/g6/plugins/tool.minimap";
-
 //import "./styles.css";
+import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import G6 from '@antv/g6';
 
-export default class Net extends React.Component {
+const Net = () => {
+  const ref = React.useRef(null);
+  let graph = null;
+
+  useEffect(() => {
+    if (!graph) {
+      let data = {
+        nodes: [
+          {
+            id: 'node1',
+            x: 100,
+            y: 100,
+          },
+          {
+            id: 'node2',
+            x: 200,
+            y: 100,
+          },
+        ],
+        edges: [
+          {
+            source: 'node1',
+            target: 'node2',
+          },
+        ],
+      };
+
+      graph = new G6.Graph({
+        container: ReactDOM.findDOMNode(ref.current),
+        width: '100%',
+        height: '100%',
+        renderer: 'svg',
+        modes: {
+          default: ['zoom-canvas', 'drag-node', 'drag-canvas'],
+        },
+        minZoom: 0.5,
+        maxZoom: 3,
+      });
+      graph.data(data);
+      graph.render();
+    }
+  }, []);
+  return (
+    <div
+      ref={ref}
+      style={{ width: 1000, height: 1000, border: '1px solid #ccc' }}
+    ></div>
+  );
+};
+
+export default Net;
+
+/* export default class Net extends React.Component {
   componentDidMount() {
     // var plugin = new Minimap({
     //   container: "minimap",
@@ -122,3 +174,4 @@ export default class Net extends React.Component {
     return [<div id="net" key="net" />, <div id="minimap" key="map" />];
   }
 }
+ */
