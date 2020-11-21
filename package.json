@@ -32,8 +32,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@antv/g6": "^3.4.0",
+    "@antv/g6-plugins": "^1.0.9",
+    "antd": "^3.23.5",
+    "html-webpack-plugin": "^4.2.0",
     "next": "9.5.5",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "webpack": "^4.42.1"
   }
 }
